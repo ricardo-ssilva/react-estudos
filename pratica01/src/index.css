@@ -2,7 +2,7 @@ h1, p, h3 {
     text-align: center;
 }
 
-.teste {
+.botao-align {
     width: 100%;
     display: flex;
     justify-content: flex-end;

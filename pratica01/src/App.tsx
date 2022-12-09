@@ -32,19 +32,6 @@ const listas = [
 
 //Renderizando listas: -----------------------------------------------------------------
 
-const [show, setShow] = useState(true)
-const [buttonValue,setButtonValue] = useState('Mais informações')
-
-const toggleInfo = () => {
-    if(show) {
-       setShow(false)
-       setButtonValue('Menos informações')
-    } else {
-       setShow(true)
-       setButtonValue('Mais informações')
-    } 
-    console.log(show)
-}
 
 return (
   <div>
@@ -69,32 +56,17 @@ return (
 
     <h2>2°. - Renderizando listas e Exibição Condicional:</h2>
     <h3 >Lista  Automática</h3>
-    <div className="teste">
-      <Botao  clickFn={toggleInfo} value={buttonValue} />
-    </div>
-      {show == true ? 
-          <ul>
+
+    <ul>
           {listas.map((item, index) => (
     
             <Pessoas  data={item} key={index}/>
             
           ))}
         
-        </ul> : 
-          <ul>
-            <br />
-            {
-              listas.map((item, index)=>(
-                <li key={index} ><strong>Nome:</strong>  {item.nome} {item.sobrenome}; <br /> <strong>Idade:</strong> {item.idade}; <br /> <strong>Peso: </strong> {item.peso} <br /> <strong>Altura:</strong> {item.altura} <hr /></li>
+    </ul> 
+ 
 
-              ))
-            
-            }</ul> 
-            
-        
-
-        }
-  
     
 {/* Renderizando Listas ---------------------------------------------------------------------*/}
 
