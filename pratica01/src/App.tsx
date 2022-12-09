@@ -1,4 +1,4 @@
-// Aplicação para estudo, utilizando enventos, states, comunicação entre pais e filhos e renderização de listas e condicionais
+// Aplicação para estudo, utilizando eventos, states, comunicação entre pais e filhos e renderização de listas e condicionais
 
 import { useState } from "react"
 import { Botao } from "./assets/components/Botao";
@@ -20,19 +20,33 @@ const App = () => {
 
 // 2° - Renderizando listas
 const listas = [
-  {nome:'Ricardo', sobrenome: 'Silva', idade: 25 },
-  {nome:'José', sobrenome: 'Lito', idade: 21 },
-  {nome:'Jeremias', sobrenome: 'O que', idade: 19 },
-  {nome:'Macunaima', sobrenome: 'Heroi', idade: 30 },
-  {nome:'Ronaldo ', sobrenome: 'Fenomeno', idade: 25 }
+  {nome:'Ricardo', sobrenome: 'Silva', idade: 25, peso: '80kg', altura: '1.80m' },
+  {nome:'José', sobrenome: 'Alvez', idade: 21, peso: '80kg', altura: '1.80m'  },
+  {nome:'Jeremias', sobrenome: 'Silveira', idade: 19, peso: '80kg', altura: '1.80m'  },
+  {nome:'Macunaima', sobrenome: 'Tapuminã', idade: 30, peso: '80kg', altura: '1.80m'  },
+  {nome:'Ronaldo ', sobrenome: 'Fenomeno', idade: 25, peso: '80kg', altura: '1.80m'  }
 ]
 
+
+
+
 //Renderizando listas: -----------------------------------------------------------------
+
+const [show, setShow] = useState(true)
+
+const toggleInfo = () => {
+    if(show) {
+       setShow(false)
+    } else {
+       setShow(true)
+    } 
+    console.log(show)
+}
 
 return (
   <div>
     <h1>Aplicações para estudo React</h1>
-    <p>Aplicação para estudos: Componentes, enventos, states, comunicação entre pais e filhos e renderização de listas e condicionais</p>
+    <p>Aplicação para estudos: Componentes, eventos, states, comunicação entre pais e filhos e renderização de listas e condicionais</p>
 
 {/* Contador: */}
     <h2>1°.  - Contador:</h2>
@@ -53,10 +67,46 @@ return (
     <ul>
       {listas.map((item, index) => (
 
-        <Pessoas data={item} key={index}/>
+        <Pessoas  data={item} key={index}/>
+        
       ))}
+     
     </ul>
 {/* Renderizando Listas ---------------------------------------------------------------------*/}
+
+{/* Exibição Condicional: */}
+        <h2>3°. - Exibição Condicional: </h2>
+        <Botao clickFn={toggleInfo} value={'Exibir uma nova lista'} /> 
+        {show == true &&
+          <ul>
+            <br />
+            {
+              listas.map((item, index)=>(
+                <li><strong>Nome:</strong>  {item.nome} {item.sobrenome}; <br /> <strong>Idade:</strong> {item.idade}; <br /> <strong>Peso: </strong> {item.peso} <br /> <strong>Altura:</strong> {item.altura} <hr /></li>
+
+              ))
+            
+            }</ul>
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+{/*  Exibição Condicional ---------------------------------------------------------------------*/}
+
+
+
+
   </div>
 )
 }
