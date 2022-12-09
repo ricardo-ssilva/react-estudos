@@ -5,7 +5,7 @@ type Props = {
 
 export const Botao = ({clickFn, value}: Props) => {
     return (
-        <button onClick={clickFn}>{value}</button>
+        <button  onClick={clickFn}>{value}</button>
     )
 
 }

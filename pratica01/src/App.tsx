@@ -20,11 +20,11 @@ const App = () => {
 
 // 2° - Renderizando listas
 const listas = [
-  {nome:'Ricardo', sobrenome: 'Silva', idade: 25, peso: '80kg', altura: '1.80m' },
-  {nome:'José', sobrenome: 'Alvez', idade: 21, peso: '80kg', altura: '1.80m'  },
-  {nome:'Jeremias', sobrenome: 'Silveira', idade: 19, peso: '80kg', altura: '1.80m'  },
-  {nome:'Macunaima', sobrenome: 'Tapuminã', idade: 30, peso: '80kg', altura: '1.80m'  },
-  {nome:'Ronaldo ', sobrenome: 'Fenomeno', idade: 25, peso: '80kg', altura: '1.80m'  }
+  {nome:'Ricardo', sobrenome: 'Silva', idade: 25, peso: '80kg;', altura: '1.80m;' },
+  {nome:'José', sobrenome: 'Alvez', idade: 21, peso: '80kg;', altura: '1.80m;'  },
+  {nome:'Jeremias', sobrenome: 'Silveira', idade: 19, peso: '80kg;', altura: '1.80m;'  },
+  {nome:'Macunaima', sobrenome: 'Tapuminã', idade: 30, peso: '80kg;', altura: '1.80m;'  },
+  {nome:'Ronaldo ', sobrenome: 'Fenomeno', idade: 25, peso: '80kg;', altura: '1.80m;'  }
 ]
 
 
@@ -33,12 +33,15 @@ const listas = [
 //Renderizando listas: -----------------------------------------------------------------
 
 const [show, setShow] = useState(true)
+const [buttonValue,setButtonValue] = useState('Mais informações')
 
 const toggleInfo = () => {
     if(show) {
        setShow(false)
+       setButtonValue('Menos informações')
     } else {
        setShow(true)
+       setButtonValue('Mais informações')
     } 
     console.log(show)
 }
@@ -54,40 +57,48 @@ return (
     <br />
       {number}
     <br />
-    <Botao value='+'  clickFn={somarNumero}/>
+    <div className="info" >
+      <Botao value='+'  clickFn={somarNumero}/>
+    </div>
     <hr />
 {/* Contador: ------------------------------------------------------------------------- */}
 
 
-{/* Renderizando Listas */}
+{/* Renderizando Listas e Exibição Condicional*/}
 
 
-    <h2>2°. - Renderizando listas:</h2>
-    <h3>Lista de Automática</h3>
-    <ul>
-      {listas.map((item, index) => (
-
-        <Pessoas  data={item} key={index}/>
+    <h2>2°. - Renderizando listas e Exibição Condicional:</h2>
+    <h3 >Lista  Automática</h3>
+    <div className="teste">
+      <Botao  clickFn={toggleInfo} value={buttonValue} />
+    </div>
+      {show == true ? 
+          <ul>
+          {listas.map((item, index) => (
+    
+            <Pessoas  data={item} key={index}/>
+            
+          ))}
         
-      ))}
-     
-    </ul>
-{/* Renderizando Listas ---------------------------------------------------------------------*/}
-
-{/* Exibição Condicional: */}
-        <h2>3°. - Exibição Condicional: </h2>
-        <Botao clickFn={toggleInfo} value={'Exibir uma nova lista'} /> 
-        {show == true &&
+        </ul> : 
           <ul>
             <br />
             {
               listas.map((item, index)=>(
-                <li><strong>Nome:</strong>  {item.nome} {item.sobrenome}; <br /> <strong>Idade:</strong> {item.idade}; <br /> <strong>Peso: </strong> {item.peso} <br /> <strong>Altura:</strong> {item.altura} <hr /></li>
+                <li key={index} ><strong>Nome:</strong>  {item.nome} {item.sobrenome}; <br /> <strong>Idade:</strong> {item.idade}; <br /> <strong>Peso: </strong> {item.peso} <br /> <strong>Altura:</strong> {item.altura} <hr /></li>
 
               ))
             
-            }</ul>
+            }</ul> 
+            
+        
+
         }
+  
+    
+{/* Renderizando Listas ---------------------------------------------------------------------*/}
+
+        
 
 
 
@@ -102,7 +113,6 @@ return (
 
 
 
-{/*  Exibição Condicional ---------------------------------------------------------------------*/}
 
 
 
